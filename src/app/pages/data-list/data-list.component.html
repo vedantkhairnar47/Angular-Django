@@ -1,0 +1,35 @@
+<h2>Submitted Records</h2>
+
+<!-- Loading State -->
+<div *ngIf="loading">
+  Loading data...
+</div>
+
+<!-- Error State -->
+<div *ngIf="error">
+  {{ error }}
+</div>
+
+<!-- Empty State -->
+<div *ngIf="!loading && records.length === 0">
+  No records found
+</div>
+
+<!-- Data Table -->
+<table *ngIf="!loading && records.length > 0" border="1">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Age</th>
+    <th>Gender</th>
+    <th>Created At</th>
+  </tr>
+
+  <tr *ngFor="let user of records">
+    <td>{{ user.name }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.age }}</td>
+    <td>{{ user.gender }}</td>
+    <td>{{ user.created_at || 'N/A' }}</td>
+  </tr>
+</table>

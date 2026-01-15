@@ -35,5 +35,10 @@
   <button type="submit" [disabled]="userForm.invalid">Submit</button>
 
 </form>
+<nav>
+  <a routerLink="/">Form</a> |
+  <a routerLink="/list">View Records</a>
+</nav>
 
+<router-outlet></router-outlet>
 <p>{{ message }}</p>
