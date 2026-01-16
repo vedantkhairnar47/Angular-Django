@@ -1,35 +1,32 @@
-<h2>Submitted Records</h2>
+<div class="table-container">
+  <h2>User Records</h2>
 
-<!-- Loading State -->
-<div *ngIf="loading">
-  Loading data...
+  <div *ngIf="loading" class="status">Loading records...</div>
+  <div *ngIf="!loading && records.length === 0" class="status">
+    No records found
+  </div>
+
+  <table *ngIf="records.length > 0" class="data-table">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of records; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.gender }}</td>
+        <td>{{ user.created_at | date:'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
-<!-- Error State -->
-<div *ngIf="error">
-  {{ error }}
-</div>
-
-<!-- Empty State -->
-<div *ngIf="!loading && records.length === 0">
-  No records found
-</div>
-
-<!-- Data Table -->
-<table *ngIf="!loading && records.length > 0" border="1">
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Age</th>
-    <th>Gender</th>
-    <th>Created At</th>
-  </tr>
-
-  <tr *ngFor="let user of records">
-    <td>{{ user.name }}</td>
-    <td>{{ user.email }}</td>
-    <td>{{ user.age }}</td>
-    <td>{{ user.gender }}</td>
-    <td>{{ user.created_at || 'N/A' }}</td>
-  </tr>
-</table>
