@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-data-list',
@@ -13,18 +13,23 @@ export class DataListComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.fetchRecords();
   }
 
-  fetchRecords() {
-    this.http.get<any[]>('http://localhost:8000/api/users/')
+  fetchRecords(): void {
+    const headers = new HttpHeaders({
+      'X-CLIENT-TYPE': 'WEB'
+    });
+
+    this.http.get<any[]>('http://localhost:8000/api/users/', { headers })
       .subscribe({
         next: (data) => {
           this.records = data;
           this.loading = false;
         },
-        error: () => {
+        error: (err) => {
+          console.error(err);
           this.error = 'Failed to load data';
           this.loading = false;
         }

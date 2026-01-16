@@ -1,44 +1,13 @@
-<h2>User Registration Form</h2>
+<div class="app-container">
+  <nav class="navbar">
+    <div class="logo">User Manager</div>
+    <div class="nav-links">
+      <a routerLink="/" routerLinkActive="active">Form</a>
+      <a routerLink="/list" routerLinkActive="active">Records</a>
+    </div>
+  </nav>
 
-<form [formGroup]="userForm" (ngSubmit)="submitForm()">
-
-  <!-- Name -->
-  <label>Name:</label>
-  <input type="text" formControlName="name">
-  <div *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid">
-    Name is required
+  <div class="content">
+    <router-outlet></router-outlet>
   </div>
-
-  <!-- Email -->
-  <label>Email:</label>
-  <input type="email" formControlName="email">
-  <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
-    Enter valid email
-  </div>
-
-  <!-- Age -->
-  <label>Age:</label>
-  <input type="number" formControlName="age">
-  <div *ngIf="userForm.get('age')?.touched && userForm.get('age')?.invalid">
-    Age must be between 18 and 60
-  </div>
-
-  <!-- Gender -->
-  <label>Gender:</label>
-  <select formControlName="gender">
-    <option value="">Select</option>
-    <option>Male</option>
-    <option>Female</option>
-  </select>
-
-  <br><br>
-  <button type="submit" [disabled]="userForm.invalid">Submit</button>
-
-</form>
-<nav>
-  <a routerLink="/">Form</a> |
-  <a routerLink="/list">View Records</a>
-</nav>
-
-<router-outlet></router-outlet>
-<p>{{ message }}</p>
+</div>
